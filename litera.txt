@@ -1,0 +1,15 @@
+npx sequelize model:generate --name User --attributes email:string,password:string,role:string
+
+npx sequelize model:generate --name Profile --attributes firstName:string,lastName:string,bio:string,photoUrl:string,UserId:integer
+
+npx sequelize model:generate --name Review --attributes rating:integer,comment:string,UserId:integer,BookId:integer
+
+npx sequelize model:generate --name Book --attributes title:string,author:string,year:integer
+
+npx sequelize model:generate --name Genre --attributes name:string
+
+npx sequelize model:generate --name BookGenre --attributes BookId:integer,GenreId:integer
+
+----> ADD COLUMN
+
+npx sequelize migration:create --name add-column-description-to-book 
