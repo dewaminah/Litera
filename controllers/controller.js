@@ -52,6 +52,64 @@ class Controller {
         }
     }
 
+    static async registerForm(req, res) {
+        try {
+            res.render('registerForm', {
+                title: 'Register Form',
+                errorMessage: '',
+                email: '',
+                role: ''
+            })
+        } catch (error) {
+            console.log(error);
+
+            res.send(error)
+        }
+    }
+
+    static async registerPost(req, res) {
+        try {
+            const { email, password, role } = req.body;
+
+            if (!email || !password || !role) {
+                return res.render('registerForm', {
+                    title: 'Register Form',
+                    errorMessage: 'Please fill in all fields!',
+                    email: email,
+                    role: role
+                });
+            }
+
+            await User.create({ email, password, role })
+            res.redirect('/login')
+
+        } catch (error) {
+            console.log(error);
+
+            res.send(error)
+        }
+    }
+
+    static async loginForm(req, res) {
+        try {
+            res.send('This is X PP')
+        } catch (error) {
+            console.log(error);
+
+            res.send(error)
+        }
+    }
+
+    static async postLogin(req, res) {
+        try {
+            res.send('This is X PP')
+        } catch (error) {
+            console.log(error);
+
+            res.send(error)
+        }
+    }
+
     static async X(req, res) {
         try {
             res.send('This is X PP')
