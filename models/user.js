@@ -1,9 +1,9 @@
+const bcrypt = require('bcryptjs');
 'use strict';
 const {
   Model
 } = require('sequelize');
 
-const bcyrpt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -18,22 +18,60 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role: DataTypes.STRING
-  }, {
-    hooks: {
-      async beforeCreate(instance) { // params instance ini si user, sebelum data passnya disimpan ke db, dia bakal di hash dulu biar lebih aman
-        // console.log(instance);
-        
-        const salt = await bcrypt.genSalt(10); // salt ini random value buat hashing passnya
-        const hash = await bcrypt.hash(instance.password, salt); // hash yang ngubah pass ke random string yang ngga bisa dikembaliin ke pass aslinya
-        instance.password = hash; // setelah berhasil, hasil hashnya disimpan dulu di instance.pass sebelum disimpan ke db
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: "Email is Required!"
+        },
+        notEmpty: {
+          args: true,
+          msg: "Email is Required!"
+        }
       }
     },
-
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: "Password is Required!"
+        },
+        notEmpty: {
+          args: true,
+          msg: "Password is Required!"
+        }
+      }
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: "Role is Required!"
+        },
+        notEmpty: {
+          args: true,
+          msg: "Role is Required!"
+        }
+      }
+    }
+  }, {
     sequelize,
     modelName: 'User',
-  });
-  return User;
+    hooks: {
+      beforeCreate: async (user) => {
+        const salt = await bcrypt.genSalt(10); // salt ini random value buat hashing passnya
+        user.password = await bcrypt.hash(user.password, salt); // hash yang ngubah pass ke random string yang ngga bisa dikembaliin ke pass aslinya
+      }  // params instance ini si user, sebelum data passnya disimpan ke db, dia bakal di hash dulu biar lebih aman
+        // console.log(instance);
+     
+        // instance.password = hash; // setelah berhasil, hasil hashnya disimpan dulu di instance.pass sebelum disimpan ke db
+    }
+  })
+    return User;
 };

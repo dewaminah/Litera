@@ -5,7 +5,9 @@ const {
     Profile,
     Review,
     BookGenre
-} = require('../models/index')
+} = require('../models/index');
+const bcrypt = require('bcryptjs');
+const user = require('../models/user');
 
 class Controller {
     static async showAddBook(req, res) {
@@ -55,7 +57,7 @@ class Controller {
     static async registerForm(req, res) {
         try {
             res.render('registerForm', {
-                title: 'Register Form',
+                title: 'Register',
                 errorMessage: '',
                 email: '',
                 role: ''
@@ -73,16 +75,23 @@ class Controller {
 
             if (!email || !password || !role) {
                 return res.render('registerForm', {
-                    title: 'Register Form',
+                    title: 'Register',
                     errorMessage: 'Please fill in all fields!',
                     email: email,
                     role: role
                 });
             }
 
-            await User.create({ email, password, role })
-            res.redirect('/login')
+            // await User.create({ email, password, role })
+            // res.redirect('/login')
 
+            // const salt = await bcrypt.genSalt(10);
+            // const hashedPassword = await bcrypt.hash(password, salt);
+        
+            await User.create({ email, password, role });
+            
+            // req.session.userId = newUser.id;
+            res.redirect('/login');
         } catch (error) {
             console.log(error);
 
@@ -92,7 +101,10 @@ class Controller {
 
     static async loginForm(req, res) {
         try {
-            res.send('This is X PP')
+            res.render('login', {
+                email: '',
+                errorMessage: ''
+            });
         } catch (error) {
             console.log(error);
 
@@ -102,11 +114,60 @@ class Controller {
 
     static async postLogin(req, res) {
         try {
-            res.send('This is X PP')
+            const { email, password } = req.body;
+
+            const user = await User.findOne({ where: { email }})
+
+            if (user) {
+                const isValid = await bcrypt.compare(password, user.password);
+            
+                if (isValid) {
+                    req.session.userId = user.id;
+                    return res.redirect('/books');
+                }
+            }
+        
+            return res.render('login', {
+                email,
+                errorMessage: 'Invalid email or password'
+            });
+    
         } catch (error) {
             console.log(error);
 
             res.send(error)
+        }
+    }
+
+    static logout(req, res) {
+        try {
+          req.session.destroy(err => {
+            if (err) throw err;
+            res.redirect('/login');
+          });
+        } catch (error) {
+          console.error(error);
+          res.send("Logout failed");
+        }
+    }
+
+    static async bookList(req, res) {
+        try {
+            const books = await Book.findAll({
+                // include: ['reviews'], 
+                order: [['createdAt', 'DESC']]
+            });
+
+        //   if (!req.session.userId) {
+        //     return res.redirect('/login');
+        //   }
+      
+        //   const books = await Book.findAll();
+          res.render('home', { books });
+        } catch (error) {
+          console.error(error);
+        //   res.send("Failed to load homepage");
+          res.send(error);
         }
     }
 
