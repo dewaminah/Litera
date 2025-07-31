@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Book.hasMany(Review);
-      Book.belongsToMany(Genre, { through: 'BookGenres' });
+      Book.hasMany(models.Review);
+      Book.belongsToMany(models.Genre, { through: 'BookGenres' });
     }
   }
   Book.init({
