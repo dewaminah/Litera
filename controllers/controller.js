@@ -97,6 +97,38 @@ class Controller {
         }
     }
 
+    static logout(req, res) {
+        try {
+          req.session.destroy(err => {
+            if (err) throw err;
+            res.redirect('/login');
+          });
+        } catch (error) {
+          console.error(error);
+          res.send("Logout failed");
+        }
+    }
+
+    static async bookList(req, res) {
+        try {
+            const books = await Book.findAll({
+                // include: ['reviews'], 
+                order: [['createdAt', 'DESC']]
+            });
+
+        //   if (!req.session.userId) {
+        //     return res.redirect('/login');
+        //   }
+      
+        //   const books = await Book.findAll();
+          res.render('home', { books });
+        } catch (error) {
+          console.error(error);
+        //   res.send("Failed to load homepage");
+          res.send(error);
+        }
+    }
+
     static async showAddBook(req, res) {
         try {
             let genres = await Genre.findAll()
@@ -245,60 +277,26 @@ class Controller {
         }
     }
 
-        static async saveReview(req, res) {
-            try {
-                const Filter = require('bad-words');
-                const filter = new Filter();
-
-                filter.addWords('goblog', 'tolol', 'anjay');
-
-                const { id } = req.params;
-                const { comment } = req.body;
-
-                const cleanComment = filter.clean(comment);
-
-                const UserId = 1; // sementara
-
-                await Review.create({ BookId: +id, UserId, comment: cleanComment });
-
-                res.redirect(`/books/${id}/reviews`);
-            } catch (error) {
-                console.log('ERROR SAAT SAVE REVIEW:', error);
-                res.send(error);
-            }
-        }
-        }
-    }
-
-    static logout(req, res) {
+    static async saveReview(req, res) {
         try {
-          req.session.destroy(err => {
-            if (err) throw err;
-            res.redirect('/login');
-          });
-        } catch (error) {
-          console.error(error);
-          res.send("Logout failed");
-        }
-    }
+            const Filter = require('bad-words');
+            const filter = new Filter();
 
-    static async bookList(req, res) {
-        try {
-            const books = await Book.findAll({
-                // include: ['reviews'], 
-                order: [['createdAt', 'DESC']]
-            });
+            filter.addWords('goblog', 'tolol', 'anjay');
 
-        //   if (!req.session.userId) {
-        //     return res.redirect('/login');
-        //   }
-      
-        //   const books = await Book.findAll();
-          res.render('home', { books });
+            const { id } = req.params;
+            const { comment } = req.body;
+
+            const cleanComment = filter.clean(comment);
+
+            const UserId = 1; // sementara
+
+            await Review.create({ BookId: +id, UserId, comment: cleanComment });
+
+            res.redirect(`/books/${id}/reviews`);
         } catch (error) {
-          console.error(error);
-        //   res.send("Failed to load homepage");
-          res.send(error);
+            console.log('ERROR SAAT SAVE REVIEW:', error);
+            res.send(error);
         }
     }
 
