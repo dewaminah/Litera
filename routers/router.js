@@ -16,10 +16,11 @@ const router = express.Router()
 // router.get('/books', Controller.bookList);
 router.get('/books/add', Controller.showAddBook);
 router.post('/books/add', Controller.saveAddBook);
-// router.get('/books/:id/edit', Controller.bookDetail);
-// router.post('/books/:id/edit', Controller.bookDetail);
-// router.get('/books/:id/delete', Controller.deletedBook);
-// router.post('/books/:id/reviews', Controller.addReview);
+router.get('/books/:id', Controller.showBookDetail);
+router.get('/books/:id/edit', Controller.showEditDetail);
+router.post('/books/:id/edit', Controller.saveEditDetail);
+router.get('/books/:id/delete', Controller.deletedBook);
+router.get('/books/:id/reviews', Controller.showReview);
 // router.get('/books/:id/edit', Controller.editReview);
 // router.post('/books/:id/edit', Controller.editReview);
 // router.get('/books/:id/delete', Controller.deletedReview);

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Litera</title>
+</head>
+<body>
+    <div>
+        <h2><%= book.title %></h2>
+
+        <h4>by <%= book.author %></h4>
+    </div>
+
+    <button>
+        <a href="/books/<%= book.id %>">Book Info</a>
+    </button>
+
+    <button>
+        <a href="/books/<%= book.id %>/reviews">Review</a>
+    </button>
+
+    <div>
+        <p>Description</p>
+        <p><%= book.description %></p>
+    </div>
+
+    <div>
+        <p>Detail</p>
+        <p>Released</p>
+        <p><%= book.release %></p>
+        <p>Author</p>
+        <p><%= book.author %></p>
+        <p>Genre</p>
+        <% book.Genres.forEach(el=> { %>
+            <p><%= el.name %></p>
+        <% }) %>
+    </div>
+</body>
+</html>
