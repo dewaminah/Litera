@@ -169,9 +169,9 @@ class Controller {
 
             await newBook.addGenres(GenreId)
 
-            res.send(newBook)
+            // res.send(newBook)
 
-            // res.redirect('/books');
+            res.redirect('/books');
             
         } catch (error) {
             console.log(error);
@@ -232,8 +232,8 @@ class Controller {
 
             await book.setGenres(GenreId);
 
-            // res.redirect('/books'); 
-            res.send(book);
+            res.redirect('/books'); 
+            // res.send(book);
 
         } catch (error) {
             console.log(error);
@@ -254,7 +254,7 @@ class Controller {
 
             await book.destroy();
 
-            // res.redirect('/books');
+            res.redirect('/books');
         } catch (error) {
             console.log(error);
 
