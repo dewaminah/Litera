@@ -15,7 +15,7 @@ const router = express.Router()
 // Book routes
 // router.get('/books', Controller.bookList);
 router.get('/books/add', Controller.showAddBook);
-router.post('/books/add', Controller.X);
+router.post('/books/add', Controller.saveAddBook);
 // router.get('/books/:id/edit', Controller.bookDetail);
 // router.post('/books/:id/edit', Controller.bookDetail);
 // router.get('/books/:id/delete', Controller.deletedBook);

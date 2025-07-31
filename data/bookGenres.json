@@ -1,0 +1,62 @@
+[
+    {
+        "BookId": 1,
+        "GenreId": 1
+    },
+    {
+        "BookId": 2,
+        "GenreId": 1
+    },
+    {
+        "BookId": 2,
+        "GenreId": 2
+    },
+    {
+        "BookId": 3,
+        "GenreId": 1
+    },
+    {
+        "BookId": 3,
+        "GenreId": 2
+    },
+    {
+        "BookId": 3,
+        "GenreId": 3
+    },
+    {
+        "BookId": 4,
+        "GenreId": 1
+    },
+    {
+        "BookId": 4,
+        "GenreId": 2
+    },
+    {
+        "BookId": 4,
+        "GenreId": 3
+    },
+    {
+        "BookId": 4,
+        "GenreId": 4
+    },
+    {
+        "BookId": 5,
+        "GenreId": 1
+    },
+    {
+        "BookId": 5,
+        "GenreId": 2
+    },
+    {
+        "BookId": 5,
+        "GenreId": 3
+    },
+    {
+        "BookId": 5,
+        "GenreId": 4
+    },
+    {
+        "BookId": 5,
+        "GenreId": 5
+    }
+]

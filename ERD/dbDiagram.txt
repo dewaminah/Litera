@@ -1,0 +1,51 @@
+Table Users {
+ id Serial [primary key]
+ email varchar [unique]
+ password varchar
+ role varchar
+}
+
+Table Profiles {
+ id Serial [primary key]
+ firstName varchar
+ lastName varchar
+ bio text
+ photoUrl varchar
+ UserId int
+}
+
+Table Books {
+ id Serial [primary key]
+ title varchar
+ author varchar
+ release date
+ description text
+}
+
+Table Reviews {
+  id Serial [primary key]
+  rating int
+  comment text
+  UserId int
+  BookId int
+}
+
+Table Genres {
+  id Serial [primary key]
+  name varchar
+}
+
+Table BookGenres {
+  BookId int
+  GenreId int
+}
+
+Ref: Users.id - Profiles.UserId
+
+Ref: Users.id < Reviews.UserId
+
+Ref: Books.id < Reviews.BookId
+
+Ref: Books.id <> BookGenres.BookId
+
+Ref: Genres.id <> BookGenres.GenreId

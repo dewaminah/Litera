@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Litera</title>
+</head>
+<body>
+    <h1>Add Book</h1>
+
+    <hr>
+
+    <form action="/books/add" method="post">
+        <label for="title">Title</label><br>
+        <input type="text" name="title" id="title"><br><br>
+
+        <label for="author">Author</label><br>
+        <input type="text" name="author" id="author"><br><br>
+
+        <label for="release">Release Date</label><br>
+        <input type="date" name="release" id="release"><br><br>
+
+        <label for="GenreId">Genre</label><br>
+        <% genres.forEach(el => { %>
+            <input type="checkbox" name="GenreId" id="GenreId" value="<%= el.id %>"><%= el.name %><br><br>
+        <% }) %>
+
+        <label for="description">Description</label><br>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea><br><br>
+
+        <button type="submit">
+            Submit
+        </button>
+    </form>
+</body>
+</html>
