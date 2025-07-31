@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Litera</title>
+</head>
+<body>
+    <div class="navbar">
+        <img src="logo.png" class="logo" />
+        <button class="logout-btn">Logout</button>
+    </div>
+
+<div class="book-container">
+    <div class="book-header">
+        <button class="edit-btn">
+            <a href="/books/<%= book.id %>/edit">Edit</a>
+        </button>
+
+        <button class="delete-btn">
+            <a href="/books/<%= book.id %>/delete">Delete</a>
+        </button>
+    </div>
+
+    <div class="book-title">
+        <h2><%= book.title %></h2>
+        <h4>by <%= book.author %></h4>
+    </div>
+
+    <div class="book-content">
+        <img src="book-cover.jpg" alt="Book Cover" class="book-cover" />
+
+    <div class="book-tabs">
+        <div class="tabs">
+            <a href="/books/<%= book.id %>">Book Info</a>
+            <a href="/books/<%= book.id %>/reviews" class="active">Reviews</a>
+        </div>
+
+        <div class="review-section">
+            <!-- Form untuk submit review -->
+            <form action="/books/<%= book.id %>/reviews" method="POST" class="review-form">
+                <textarea name="comment" placeholder="Enter your review"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+
+            <!-- List review -->
+            <% review.forEach(el => { %>
+                <div class="review-box">
+                    <div class="review-user">
+                        <img src="<%= el.User.Profile.photoUrl || 'https://i.pravatar.cc/40' %>" alt="User Avatar" />
+                        <div class="review-user-info">
+                            <strong><%= el.User.Profile.firstName + ' ' + el.User.Profile.lastName %></strong>
+                            <small><%= formatDate(el.createdAt) %></small>
+                        </div>
+                    </div>
+                    <p class="review-content"><%= el.comment %></p>
+                </div>
+            <% }) %>
+
+        </div>
+
+</body>
+</html>

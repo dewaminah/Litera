@@ -23,7 +23,7 @@
 
         <label for="GenreId">Genre</label><br>
         <% genres.forEach(el => { %>
-            <input type="checkbox" name="GenreId" id="GenreId" value="<%= el.id %>"><%= el.name %><br><br>
+            <input type="checkbox" name="GenreId" id="GenreId-<%= el.id %>" value="<%= el.id %>"><%= el.name %><br><br>
         <% }) %>
 
         <label for="description">Description</label><br>
