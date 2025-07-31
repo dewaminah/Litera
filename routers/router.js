@@ -1,6 +1,6 @@
 const express = require('express');
 const Controller = require('../controllers/controller');
-const router = express.Router()
+const router = express.Router();
 
 // Landing page
 router.get('/', Controller.landing);
@@ -19,9 +19,10 @@ router.post('/books/add', Controller.saveAddBook);
 router.get('/books/:id/edit', Controller.bookDetail);
 router.post('/books/:id/edit', Controller.bookDetail);
 router.get('/books/:id/delete', Controller.deletedBook);
+
 router.post('/books/:id/reviews', Controller.addReview);
-router.get('/books/:id/edit', Controller.editReview); //
-router.post('/books/:id/edit', Controller.editReview); //
-router.get('/books/:id/delete', Controller.deletedReview); //
+router.get('/books/:id/reviews/:reviewId/edit', Controller.editReview); //
+router.post('/books/:id/reviews/:reviewId/edit', Controller.editReview); //
+router.get('/books/:id/reviews/:reviewId/delete', Controller.deletedReview); //
 
 module.exports = router;

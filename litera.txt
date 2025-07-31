@@ -13,3 +13,23 @@ npx sequelize model:generate --name BookGenre --attributes BookId:integer,GenreI
 ----> ADD COLUMN
 
 npx sequelize migration:create --name add-column-description-to-book 
+
+// 1:1
+User --> Profile
+User.hasOne(Profile);
+Profile.belongsTo(User);
+
+// 1:M 
+User --> Review
+User.hasMany(Review);
+Review.belongsTo(User);
+
+// 1:M 
+Book --> Review
+Book.hasMany(Review);
+Review.belongsTo(Book);
+
+// M:M 
+Book --> Genre
+Book.belongsToMany(Genre, { through: 'BookGenres' });
+Genre.belongsToMany(Book, { through: 'BookGenres' });
