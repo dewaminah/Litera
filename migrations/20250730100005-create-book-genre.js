@@ -10,10 +10,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       BookId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Books',
+          key : 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       GenreId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Genres',
+          key : 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,
