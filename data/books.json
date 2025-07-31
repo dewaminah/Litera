@@ -1,32 +1,33 @@
 [
     {
-    "title": "The Great Gatsby",
-    "author": "F. Scott Fitzgerald",
-    "year": 1925,
-    "description": "A novel set in the Jazz Age that tells the story of Jay Gatsby and his unrequited love for Daisy Buchanan."
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "release": "1925-01-01",
+        "description": "A novel set in the Jazz Age that tells the story of Jay Gatsby and his unrequited love for Daisy Buchanan."
     },
     {
-    "title": "To Kill a Mockingbird",
-    "author": "Harper Lee",
-    "year": 1960,
-    "description": "A powerful story about racial injustice in the Deep South, seen through the eyes of young Scout Finch."
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "release": "1960-01-01",
+        "description": "A powerful story about racial injustice in the Deep South, seen through the eyes of young Scout Finch."
     },
     {
-    "title": "1984",
-    "author": "George Orwell",
-    "year": 1949,
-    "description": "A dystopian novel that explores the dangers of totalitarianism and extreme political ideology."
+        "title": "1984",
+        "author": "George Orwell",
+        "release": "1949-01-01",
+        "description": "A dystopian novel that explores the dangers of totalitarianism and extreme political ideology."
     },
     {
-    "title": "Pride and Prejudice",
-    "author": "Jane Austen",
-    "year": 1813,
-    "description": "A classic romantic novel that explores themes of love, class, and reputation in 19th-century England."
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "release": "1813-01-01",
+        "description": "A classic romantic novel that explores themes of love, class, and reputation in 19th-century England."
     },
     {
-    "title": "The Hobbit",
-    "author": "J.R.R. Tolkien",
-    "year": 1937,
-    "description": "A fantasy adventure that follows Bilbo Baggins as he embarks on a quest to reclaim treasure guarded by a dragon."
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "release": "1937-01-01",
+        "description": "A fantasy adventure that follows Bilbo Baggins as he embarks on a quest to reclaim treasure guarded by a dragon."
     }
 ]
+
