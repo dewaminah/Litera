@@ -1,6 +1,6 @@
 const express = require('express');
 const Controller = require('../controllers/controller');
-const router = express.Router()
+const router = express.Router();
 
 // Landing page
 // router.get('/', Controller.X);
