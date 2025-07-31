@@ -24,7 +24,6 @@ Table Books {
 
 Table Reviews {
   id Serial [primary key]
-  rating int
   comment text
   UserId int
   BookId int

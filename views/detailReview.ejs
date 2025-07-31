@@ -37,26 +37,28 @@
             <a href="/books/<%= book.id %>/reviews" class="active">Reviews</a>
         </div>
 
-        <div class="book-info">
-        <div class="description">
-            <h4>Description</h4>
-            <p>
-            <%= book.description %>
-            </p>
-        </div>
+        <div class="review-section">
+            <!-- Form untuk submit review -->
+            <form action="/books/<%= book.id %>/reviews" method="POST" class="review-form">
+                <textarea name="comment" placeholder="Enter your review"></textarea>
+                <button type="submit">Submit</button>
+            </form>
 
-        <div class="details">
-            <h4>Details</h4>
-            <p><strong>Released:</strong> <%= formatDate(book.release) %></p>
-            <p><strong>Author:</strong> <%= book.author %></p>
-            <p><strong>Genre:</strong> <% book.Genres.forEach(el=> { %>
-            <%= el.name %>
-        <% }) %></p>
+            <!-- List review -->
+            <% review.forEach(el => { %>
+                <div class="review-box">
+                    <div class="review-user">
+                        <img src="<%= el.User.Profile.photoUrl || 'https://i.pravatar.cc/40' %>" alt="User Avatar" />
+                        <div class="review-user-info">
+                            <strong><%= el.User.Profile.firstName + ' ' + el.User.Profile.lastName %></strong>
+                            <small><%= formatDate(el.createdAt) %></small>
+                        </div>
+                    </div>
+                    <p class="review-content"><%= el.comment %></p>
+                </div>
+            <% }) %>
+
         </div>
-        </div>
-    </div>
-    </div>
-</div>
 
 </body>
 </html>

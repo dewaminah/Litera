@@ -1,0 +1,16 @@
+[
+    {
+        "firstName": "Elvita",
+        "lastName": "Sukardi",
+        "bio": "A passionate book reviewer.",
+        "photoUrl": "https://i.pravatar.cc/150?u=1",
+        "UserId": 1
+    },
+    {
+        "firstName": "Dimas",
+        "lastName": "Saputra",
+        "bio": "Lover of fantasy and sci-fi books.",
+        "photoUrl": "https://i.pravatar.cc/150?u=2",
+        "UserId": 2
+    }
+]

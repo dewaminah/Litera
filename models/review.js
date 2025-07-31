@@ -14,9 +14,18 @@ module.exports = (sequelize, DataTypes) => {
       Review.belongsTo(models.User);
       Review.belongsTo(models.Book);
     }
+
+    static async ReviewUserAndProfile() {
+      return await this.findAll( {
+          include: {
+              model: sequelize.models.User,
+              include: sequelize.models.Profile
+          }
+      });
+  }
+
   }
   Review.init({
-    rating: DataTypes.INTEGER,
     comment: DataTypes.STRING,
     UserId: DataTypes.INTEGER,
     BookId: DataTypes.INTEGER

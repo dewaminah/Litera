@@ -1,7 +1,12 @@
 [
     {
-        "email": "johndoe@mail.com",
-        "password": "johndoe123",
+        "email": "user1@example.com",
+        "password": "hashed_password_1",
+        "role": "admin"
+    },
+    {
+        "email": "user2@example.com",
+        "password": "hashed_password_2",
         "role": "user"
     }
 ]
