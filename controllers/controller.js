@@ -1,3 +1,4 @@
+const { formatDate } = require('../helpers/helper');
 const {
     User,
     Book,
@@ -10,14 +11,6 @@ const {
 class Controller {
     static async showAddBook(req, res) {
         try {
-            // let dataBooks = await BookGenre.findAll({
-            //     include: [
-            //         { model: Book },
-            //         { model: Genre }
-            //     ]
-            //     });
-            // console.log(dataBooks);
-
             let genres = await Genre.findAll()
 
             // res.send(genres);
@@ -109,7 +102,7 @@ class Controller {
             res.send(error)
         }
     }
-
+    
     static async X(req, res) {
         try {
             res.send('This is X PP')

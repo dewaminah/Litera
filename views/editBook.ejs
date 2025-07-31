@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Litera</title>
+</head>
+<body>
+    <h1>Edit Book</h1>
+
+    <hr>
+
+    <form action="/books/<%= book.id %>/edit" method="post">
+        <label for="title">Title</label><br>
+        <input type="text" name="title" id="title" value="<%= book.title %>"><br><br>
+
+        <label for="author">Author</label><br>
+        <input type="text" name="author" id="author" value="<%= book.author %>"><br><br>
+
+        <label for="release">Release Date</label><br>
+        <input type="date" name="release" id="release" value="<%= formatDate(book.release) %>"><br><br>
+
+        <label for="GenreId">Genre</label><br>
+            <% genres.forEach(el => { %>
+                <% let isChecked = false;
+                book.Genres.forEach(g => {
+                    if (+g.id === +el.id) isChecked = true;
+                });%>
+                <input type="checkbox" name="GenreId" id="GenreId-<%= el.id %>" value="<%= el.id %>" 
+                <%= isChecked ? "checked" : "" %>><label for="GenreId-<%= el.id %>"><%= el.name %></label><br><br>
+            <% }) %>
+
+
+        <label for="description">Description</label><br>
+        <textarea name="description" id="description" cols="30" rows="10"><%= book.description %></textarea><br><br>
+
+        <button type="submit">
+            Submit
+        </button>
+    </form>
+</body>
+</html>

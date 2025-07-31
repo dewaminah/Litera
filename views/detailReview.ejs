@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Litera</title>
+</head>
+<body>
+    <div class="navbar">
+        <img src="logo.png" class="logo" />
+        <button class="logout-btn">Logout</button>
+    </div>
+
+<div class="book-container">
+    <div class="book-header">
+        <button class="edit-btn">
+            <a href="/books/<%= book.id %>/edit">Edit</a>
+        </button>
+
+        <button class="delete-btn">
+            <a href="/books/<%= book.id %>/delete">Delete</a>
+        </button>
+    </div>
+
+    <div class="book-title">
+        <h2><%= book.title %></h2>
+        <h4>by <%= book.author %></h4>
+    </div>
+
+    <div class="book-content">
+        <img src="book-cover.jpg" alt="Book Cover" class="book-cover" />
+
+    <div class="book-tabs">
+        <div class="tabs">
+            <a href="/books/<%= book.id %>">Book Info</a>
+            <a href="/books/<%= book.id %>/reviews" class="active">Reviews</a>
+        </div>
+
+        <div class="book-info">
+        <div class="description">
+            <h4>Description</h4>
+            <p>
+            <%= book.description %>
+            </p>
+        </div>
+
+        <div class="details">
+            <h4>Details</h4>
+            <p><strong>Released:</strong> <%= formatDate(book.release) %></p>
+            <p><strong>Author:</strong> <%= book.author %></p>
+            <p><strong>Genre:</strong> <% book.Genres.forEach(el=> { %>
+            <%= el.name %>
+        <% }) %></p>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>
