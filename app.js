@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 app.use(router);
+app.use(router);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
