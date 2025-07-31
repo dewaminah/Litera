@@ -1,4 +1,5 @@
 const { formatDate } = require('../helpers/helper');
+
 const {
     User,
     Book,
@@ -66,7 +67,7 @@ class Controller {
             res.send(error)
         }
     }
-    
+
     static async showAddBook(req, res) {
         try {
             let genres = await Genre.findAll()
@@ -194,16 +195,49 @@ class Controller {
                 include: Genre
             });
 
-            let genres = await Genre.findAll()
+            // let reviews = await Review.findByPk(+id, {
+            //     include: {
+            //         model: User,
+            //         include: Profile
+            //     }
+            // });
 
+            const review = await Review.ReviewUserAndProfile();
+
+            // res.send(review)
+            
+            // res.send(review)
             // res.send(book)
-            res.render('detailReview', { book, genres, formatDate })
+            res.render('detailReview', { book, review,  formatDate })
         } catch (error) {
             console.log(error);
 
             res.send(error)
         }
     }
+
+        static async saveReview(req, res) {
+            try {
+                const Filter = require('bad-words');
+                const filter = new Filter();
+
+                filter.addWords('goblog', 'tolol', 'anjay');
+
+                const { id } = req.params;
+                const { comment } = req.body;
+
+                const cleanComment = filter.clean(comment);
+
+                const UserId = 1; // sementara
+
+                await Review.create({ BookId: +id, UserId, comment: cleanComment });
+
+                res.redirect(`/books/${id}/reviews`);
+            } catch (error) {
+                console.log('ERROR SAAT SAVE REVIEW:', error);
+                res.send(error);
+            }
+        }
 
     static async X(req, res) {
         try {

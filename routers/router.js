@@ -21,6 +21,7 @@ router.get('/books/:id/edit', Controller.showEditDetail);
 router.post('/books/:id/edit', Controller.saveEditDetail);
 router.get('/books/:id/delete', Controller.deletedBook);
 router.get('/books/:id/reviews', Controller.showReview);
+router.post('/books/:id/reviews', Controller.saveReview);
 // router.get('/books/:id/edit', Controller.editReview);
 // router.post('/books/:id/edit', Controller.editReview);
 // router.get('/books/:id/delete', Controller.deletedReview);
