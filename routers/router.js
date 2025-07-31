@@ -3,7 +3,7 @@ const Controller = require('../controllers/controller');
 const router = express.Router();
 
 // Landing page
-// router.get('/', Controller.X);
+router.get('/', Controller.landing);
 
 // Auth routes
 router.get('/register', Controller.registerForm);

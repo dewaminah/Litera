@@ -50,7 +50,7 @@
                     <div class="review-user">
                         <img src="<%= el.User.Profile.photoUrl || 'https://i.pravatar.cc/40' %>" alt="User Avatar" />
                         <div class="review-user-info">
-                            <strong><%= el.User.Profile.firstName + ' ' + el.User.Profile.lastName %></strong>
+                            <strong><%= el.User.Profile.fullName %></strong>
                             <small><%= formatDate(el.createdAt) %></small>
                         </div>
                     </div>
