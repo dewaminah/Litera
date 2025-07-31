@@ -129,6 +129,21 @@ class Controller {
         }
     }
 
+    static async landing(req, res) {
+        try {
+            // let genres = await Genre.findAll()
+
+            // res.send(genres);
+
+            res.render('landingPage');
+            
+        } catch (error) {
+            console.log(error);
+
+            res.send(error)
+        }
+    }
+
     static async showAddBook(req, res) {
         try {
             let genres = await Genre.findAll()
