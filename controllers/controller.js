@@ -45,16 +45,14 @@ class Controller {
         }
     }
 
-    static async showBookDetail(req, res) {
+    static async registerForm(req, res) {
         try {
-            let { id } = req.params
-            // console.log(id);
-
-            let book = await Book.findByPk(+id, {
-                include: Genre
-            });
-
-            res.render('detailBook copy', { book, formatDate })
+            res.render('registerForm', {
+                title: 'Register Form',
+                errorMessage: '',
+                email: '',
+                role: ''
+            })
         } catch (error) {
             console.log(error);
 
@@ -62,43 +60,21 @@ class Controller {
         }
     }
 
-    static async showEditDetail(req, res) {
+    static async registerPost(req, res) {
         try {
-            let { id } = req.params
-            // console.log(id);
+            const { email, password, role } = req.body;
 
-            let book = await Book.findByPk(+id, {
-                include: Genre
-            });
-
-            let genres = await Genre.findAll()
-
-            // res.send(book)
-            res.render('editBook', { book, genres, formatDate })
-        } catch (error) {
-            console.log(error);
-
-            res.send(error)
-        }
-    }
-
-    static async saveEditDetail(req, res) {
-        try {
-            let { id } = req.params;
-            let { title, author, release, GenreId, description } = req.body;
-
-            const book = await Book.findByPk(+id);
-
-            if (!book) {
-                return res.status(404).send("Book not found");
+            if (!email || !password || !role) {
+                return res.render('registerForm', {
+                    title: 'Register Form',
+                    errorMessage: 'Please fill in all fields!',
+                    email: email,
+                    role: role
+                });
             }
 
-            await book.update({ title, author, release, description });
-
-            await book.setGenres(GenreId);
-
-            // res.redirect('/books'); 
-            res.send(book);
+            await User.create({ email, password, role })
+            res.redirect('/login')
 
         } catch (error) {
             console.log(error);
@@ -107,19 +83,9 @@ class Controller {
         }
     }
 
-    static async deletedBook(req, res) {
+    static async loginForm(req, res) {
         try {
-            const { id } = req.params;
-
-            const book = await Book.findByPk(+id);
-
-            if (!book) {
-                return res.status(404).send("Book not found");
-            }
-
-            await book.destroy();
-
-            // res.redirect('/books');
+            res.send('This is X PP')
         } catch (error) {
             console.log(error);
 
@@ -127,26 +93,16 @@ class Controller {
         }
     }
 
-    static async showReview(req, res) {
+    static async postLogin(req, res) {
         try {
-            let { id } = req.params
-            // console.log(id);
-
-            let book = await Book.findByPk(+id, {
-                include: Genre
-            });
-
-            let genres = await Genre.findAll()
-
-            // res.send(book)
-            res.render('detailReview', { book, genres, formatDate })
+            res.send('This is X PP')
         } catch (error) {
             console.log(error);
 
             res.send(error)
         }
     }
-
+    
     static async X(req, res) {
         try {
             res.send('This is X PP')

@@ -1,15 +1,15 @@
 const express = require('express');
 const Controller = require('../controllers/controller');
-const router = express.Router()
+const router = express.Router();
 
 // Landing page
 // router.get('/', Controller.X);
 
 // Auth routes
-// router.get('/register', Controller.showRegister);
-// router.post('/register', Controller.saveRegister);
-// router.get('/login', Controller.showLogin);
-// router.post('/login', Controller.saveLogin);
+router.get('/register', Controller.registerForm);
+router.post('/register', Controller.registerPost);
+router.get('/login', Controller.loginForm);
+router.post('/login', Controller.postLogin);
 // router.get('/logout', Controller.logout);
 
 // Book routes
