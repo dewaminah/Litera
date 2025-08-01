@@ -143,6 +143,21 @@ class Controller {
         }
     }
 
+    static async landing(req, res) {
+        try {
+            // let genres = await Genre.findAll()
+
+            // res.send(genres);
+
+            res.render('landingPage');
+            
+        } catch (error) {
+            console.log(error);
+
+            res.send(error)
+        }
+    }
+
     static async showAddBook(req, res) {
         try {
             let genres = await Genre.findAll()
@@ -168,9 +183,9 @@ class Controller {
 
             await newBook.addGenres(GenreId)
 
-            res.send(newBook)
+            // res.send(newBook)
 
-            // res.redirect('/books');
+            res.redirect('/books');
             
         } catch (error) {
             console.log(error);
@@ -231,8 +246,8 @@ class Controller {
 
             await book.setGenres(GenreId);
 
-            // res.redirect('/books'); 
-            res.send(book);
+            res.redirect('/books'); 
+            // res.send(book);
 
         } catch (error) {
             console.log(error);

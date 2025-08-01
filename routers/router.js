@@ -10,7 +10,7 @@ function isAuthenticated(req, res, next) {
   }
 
 // Landing page
-// router.get('/', Controller.X);
+router.get('/', Controller.landing);
 
 // Auth routes
 router.get('/register', Controller.registerForm);
