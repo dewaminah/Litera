@@ -45,18 +45,21 @@
                             placeholder="Enter Your Password"
                         >
                     </div>
-        
+
                     <div class="mb-4">
                         <label class="block text-gray-700 font-semibold mb-2" for="role">Role</label>
-                        <input 
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                            type="text" 
-                            id="role" 
-                            name="role" 
-                            placeholder="Enter Role (e.g., Admin)"
-                            value="<%= role || '' %>"
+                        <select 
+                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          id="role" 
+                          name="role"
+                          required
                         >
-                    </div>
+                          <option value="">-- Select Role --</option>
+                          <option value="admin" <%= role === 'admin' ? 'selected' : '' %>>Admin</option>
+                          <option value="user" <%= role === 'user' ? 'selected' : '' %>>User</option>
+                        </select>
+                      </div>
+                      
         
                     <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200">
                         Register

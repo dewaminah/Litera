@@ -43,7 +43,10 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           args: true,
           msg: "Password is Required!"
-        }
+        },
+        // if (this.password.length < 1000) {
+        //   throw new Error('Password minimal length is 4 character!');
+        // }
       }
     },
     role: {
