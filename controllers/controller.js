@@ -21,6 +21,7 @@ class Controller {
                 role: ''
             })
         } catch (error) {
+            
             console.log(error);
 
             res.send(error)
@@ -50,10 +51,19 @@ class Controller {
             
             // req.session.userId = newUser.id;
             res.redirect('/login');
-        } catch (error) {
-            console.log(error);
-
-            res.send(error)
+        } catch (error) { ////
+            if (error.name === "SequelizeValidationError") {
+              const messages = error.errors.map(e => e.message);
+              return res.render('registerForm', {
+                title: 'Register',
+                errorMessage: messages.join(', '),
+                email,
+                role
+              });
+            } else {
+                console.log(error);
+                res.send(error);
+            }
         }
     }
 
@@ -113,8 +123,12 @@ class Controller {
         try {
             const books = await Book.findAll({
                 // include: ['reviews'], 
-                order: [['createdAt', 'DESC']]
+                // order: [['title', 'DESC']]
             });
+
+            if (title) options.include.where.title = {
+                [Op.iLike]: `%${title}%`
+            };
 
         //   if (!req.session.userId) {
         //     return res.redirect('/login');
@@ -229,23 +243,24 @@ class Controller {
 
     static async deletedBook(req, res) {
         try {
-            const { id } = req.params;
-
-            const book = await Book.findByPk(+id);
-
-            if (!book) {
-                return res.status(404).send("Book not found");
-            }
-
-            await book.destroy();
-
-            // res.redirect('/books');
+          const { id } = req.params;
+      
+          const book = await Book.findByPk(+id);
+      
+          if (!book) {
+            return res.status(404).send("Book not found");
+          }
+      
+          const bookTitle = book.title;
+          await book.destroy();
+      
+          res.redirect(`/books?deleted=${bookTitle} removed`);
         } catch (error) {
-            console.log(error);
-
-            res.send(error)
+          console.log(error);
+          res.send(error.message || error);
         }
-    }
+      }
+      
 
     static async showReview(req, res) {
         try {
